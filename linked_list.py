@@ -44,7 +44,7 @@ class LinkedList(object):
 
         if found is not True:
             raise ValueError("Data was not found in the list.")
-                    
+
         return current_node
 
     def delete(self, data=None):
@@ -53,7 +53,7 @@ class LinkedList(object):
         found = False
 
         while current_node and found is False:
-            if (current_node.get_data() == data):
+            if current_node.get_data() == data:
                 found = True
             else:
                 previous_node = current_node
@@ -62,15 +62,9 @@ class LinkedList(object):
         if found is True:
             next_node = current_node.get_next()
 
-            if (previous_node is None):
+            if previous_node is None:
                 self.head = next_node
             else:
                 previous_node.set_next(next_node)
         else:
             raise ValueError("Data was not found in the list.")
-
-
-if __name__ == '__main__':
-    linked_list = LinkedList()
-    linked_list.insert("one")
-    linked_list.insert("two")
