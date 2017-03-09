@@ -4,23 +4,13 @@ class Node(object):
         self.data = data
         self.next_node = next_node
 
-    def get_data(self):
-        return self.data
-
-    def get_next(self):
-        return self.next_node
-
-    def set_next(self, new_next_node=None):
-        self.next_node = new_next_node
-
-
 class LinkedList(object):
     def __init__(self, head=None):
         self.head = head
 
     def insert(self, data=None):
         new_node = Node(data)
-        new_node.set_next(self.head)
+        new_node.next_node = self.head
         self.head = new_node
 
     def size(self):
@@ -29,7 +19,7 @@ class LinkedList(object):
 
         while current_node:
             count += 1
-            current_node = current_node.get_next()
+            current_node = current_node.next_node
         return count
 
     def search(self, data=None):
@@ -37,10 +27,10 @@ class LinkedList(object):
         found = False
 
         while current_node and found is False:
-            if current_node.get_data() == data:
+            if current_node.data == data:
                 found = True
             else:
-                current_node = current_node.get_next()
+                current_node = current_node.next_node
 
         if found is not True:
             raise ValueError("Data was not found in the list.")
@@ -53,18 +43,18 @@ class LinkedList(object):
         found = False
 
         while current_node and found is False:
-            if current_node.get_data() == data:
+            if current_node.data == data:
                 found = True
             else:
                 previous_node = current_node
-                current_node = current_node.get_next()
+                current_node = current_node.next_node
 
         if found is True:
-            next_node = current_node.get_next()
+            next_node = current_node.next_node
 
             if previous_node is None:
                 self.head = next_node
             else:
-                previous_node.set_next(next_node)
+                previous_node.next_node = next_node
         else:
             raise ValueError("Data was not found in the list.")
