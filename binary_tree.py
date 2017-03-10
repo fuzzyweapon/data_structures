@@ -39,7 +39,7 @@ class BinaryTree(object):
         if node.left is None:
             return node
         else:
-            return min(node=node.left)
+            return self.min(node=node.left)
 
     def max(self, node=None):
         if node is None:
@@ -48,4 +48,4 @@ class BinaryTree(object):
         if node.right is None:
             return node
         else:
-            return max(node=node.right)
+            return self.max(node=node.right)
