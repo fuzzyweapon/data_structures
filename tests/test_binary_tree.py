@@ -57,3 +57,19 @@ class TestBinaryTree:
 
     def test_min_empty(self):
         assert self.binary_tree.min(node=self.binary_tree.root) is None
+
+    def test_max_root(self):
+        root = self.binary_tree.root
+        root = self.binary_tree.insert(node=root, data='a')
+
+        assert self.binary_tree.max(node=root).data == 'a'
+
+    def test_max_right(self):
+        root = self.binary_tree.root
+        root = self.binary_tree.insert(data='c')
+        root = self.binary_tree.insert(data='d')
+
+        assert self.binary_tree.max(node=root).data == 'd'
+
+    def test_max_empty(self):
+        assert self.binary_tree.max(node=self.binary_tree.root) is None

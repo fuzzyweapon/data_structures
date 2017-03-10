@@ -40,3 +40,12 @@ class BinaryTree(object):
             return node
         else:
             return min(node=node.left)
+
+    def max(self, node=None):
+        if node is None:
+            return None
+
+        if node.right is None:
+            return node
+        else:
+            return max(node=node.right)
