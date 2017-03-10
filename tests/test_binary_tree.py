@@ -113,3 +113,24 @@ class TestBinaryTree:
 
     def test_size_empty(self):
         assert self.binary_tree.size(node=self.binary_tree.root) == 0
+
+    def test_floor_one(self):
+        root = Node(data='one')
+        assert self.binary_tree.floor(node=root, data='one').data == 'one'
+
+    def test_floor_with_max_child(self):
+        root = Node(data=3)
+        root.left = Node(data=1)
+        root.left.right = Node(data=2)
+
+        assert self.binary_tree.floor(node=root, data=3).data == 2
+
+    def test_floor_without_max_child(self):
+        root = Node(data=3)
+        root.left = Node(data=1)
+
+        assert self.binary_tree.floor(node=root, data=3).data == 1
+
+    def test_floor_not_found(self):
+        with pytest.raises(ValueError):
+            self.binary_tree.floor(node=self.binary_tree.root, data='one')

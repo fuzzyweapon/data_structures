@@ -80,3 +80,17 @@ class BinaryTree(object):
         if node.left is None and node.right is None:
             return 1
         return self.size(node=node.left) + 1 + self.size(node=node.right)
+
+    def floor(self, node=None, data=None):
+        if node is None:
+            raise ValueError("The data was not found.")
+
+        if data < node.data:
+            node.left = self.floor(node=node.left, data=data)
+        elif data > node.data:
+            node.right = self.floor(node=node.right, data=data)
+        else:
+            floor = self.max(node=node.left)
+            if floor:
+                node = floor
+        return node
