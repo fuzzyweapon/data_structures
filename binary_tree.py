@@ -94,3 +94,17 @@ class BinaryTree(object):
             if floor:
                 node = floor
         return node
+
+    def ceiling(self, node=None, data=None):
+        if node is None:
+            raise ValueError("The data was not found.")
+
+        if data < node.data:
+            node.left = self.ceiling(node=node.left, data=data)
+        elif data > node.data:
+            node.right = self.ceiling(node=node.right, data=data)
+        else:
+            ceiling = self.min(node=node.right)
+            if ceiling:
+                node = ceiling
+        return node
