@@ -31,3 +31,12 @@ class BinaryTree(object):
             node.right = self.insert(node=node.right, data=data)
 
         return node
+
+    def min(self, node=None):
+        if node is None:
+            return None
+
+        if node.left is None:
+            return node
+        else:
+            return min(node=node.left)

@@ -41,3 +41,19 @@ class TestBinaryTree:
         assert root.data == 'b'
         assert root.left.data == 'a'
         assert root.right.data == 'c'
+
+    def test_min_root(self):
+        root = self.binary_tree.root
+        root = Node(data=1)
+
+        assert self.binary_tree.min(node=root).data == 1
+
+    def test_min_left(self):
+        root = self.binary_tree.root
+        root = self.binary_tree.insert(data='b')
+        root = self.binary_tree.insert(data='a')
+
+        assert self.binary_tree.min(node=root).data == 'a'
+
+    def test_min_empty(self):
+        assert self.binary_tree.min(node=self.binary_tree.root) is None
