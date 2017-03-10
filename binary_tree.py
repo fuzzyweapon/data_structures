@@ -72,3 +72,11 @@ class BinaryTree(object):
                 node.left = node_to_delete.left
 
         return node
+
+    def size(self, node=None):
+        if node is None:
+            return 0
+
+        if node.left is None and node.right is None:
+            return 1
+        return self.size(node=node.left) + 1 + self.size(node=node.right)

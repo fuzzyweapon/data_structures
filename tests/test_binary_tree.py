@@ -113,3 +113,13 @@ class TestBinaryTree:
     def test_delete_not_found(self):
         with pytest.raises(ValueError):
             self.binary_tree.delete(node=self.binary_tree.root, data=1)
+
+    def test_size_some(self):
+        root = self.binary_tree.root
+        root = Node(data=4)
+        root.left = Node(data=2)
+
+        assert self.binary_tree.size(node=root) == 2
+
+    def test_size_empty(self):
+        assert self.binary_tree.size(node=self.binary_tree.root) == 0
