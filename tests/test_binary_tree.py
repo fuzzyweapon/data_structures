@@ -29,8 +29,9 @@ class TestBinaryTree:
             self.binary_tree.lookup(node=self.binary_tree.root, data='foo')
 
     def test_insert(self):
-        self.binary_tree.root = self.binary_tree.insert(node=self.binary_tree.root, data='foo')
-        assert self.binary_tree.root.data == 'foo'
+        root = self.binary_tree.root
+        root = self.binary_tree.insert(node=root, data='foo')
+        assert root.data == 'foo'
 
     def test_insert_multiple(self):
         root = self.binary_tree.root
@@ -50,8 +51,8 @@ class TestBinaryTree:
 
     def test_min_left(self):
         root = self.binary_tree.root
-        root = self.binary_tree.insert(data='b')
-        root = self.binary_tree.insert(data='a')
+        root = Node(data='b')
+        root.left = Node(data='a')
 
         assert self.binary_tree.min(node=root).data == 'a'
 
@@ -60,14 +61,14 @@ class TestBinaryTree:
 
     def test_max_root(self):
         root = self.binary_tree.root
-        root = self.binary_tree.insert(node=root, data='a')
-
+        root = Node(data='a')
+        
         assert self.binary_tree.max(node=root).data == 'a'
 
     def test_max_right(self):
         root = self.binary_tree.root
-        root = self.binary_tree.insert(data='c')
-        root = self.binary_tree.insert(data='d')
+        root = Node(data='c')
+        root.right = Node(data='d')
 
         assert self.binary_tree.max(node=root).data == 'd'
 
