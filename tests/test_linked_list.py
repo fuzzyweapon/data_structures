@@ -2,6 +2,26 @@ import pytest
 from linked_list import Node, LinkedList
 
 
+class TestNode:
+    def test_get_data(self):
+        node = Node(data='one', next_node=None)
+        assert node.data == 'one'
+
+    def test_get_next(self):
+        next_node = Node(data='two', next_node=None)
+        node = Node(data='one', next_node=next_node)
+
+        assert node.next_node == next_node
+
+    def test_set_next(self):
+        next_node = Node(data='two', next_node=None)
+        node = Node(data='one', next_node=next_node)
+        new_node = Node(data='three', next_node=None)
+
+        node.next_node = new_node
+        assert node.next_node == new_node
+
+
 class TestLinkedList:
     def setup_method(self, method):
         self.linked_list = LinkedList()
