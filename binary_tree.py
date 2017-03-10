@@ -1,16 +1,14 @@
 
 
 class Node(object):
-
     def __init__(self, data=None, left=None, right=None):
         self.data = data
         self.left = left
         self.right = right
 
 class BinaryTree(object):
-
     def __init__(self):
-        self.root = Node()
+        self.root = None
 
     def lookup(self, node=None, data=None):
         if node is None:
@@ -22,3 +20,14 @@ class BinaryTree(object):
             return self.lookup(node=node.right, data=data)
         else:
             return True
+
+    def insert(self, node=None, data=None):
+        if node is None:
+            return Node(data=data)
+
+        if data <= node.data:
+            node.left = self.insert(node=node.left, data=data)
+        else:
+            node.right = self.insert(node=node.right, data=data)
+
+        return node
