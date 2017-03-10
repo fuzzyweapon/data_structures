@@ -74,3 +74,42 @@ class TestBinaryTree:
 
     def test_max_empty(self):
         assert self.binary_tree.max(node=self.binary_tree.root) is None
+
+    def test_delete_root(self):
+        root = self.binary_tree.root
+        root = Node(data='one')
+        root = self.binary_tree.delete(node=root, data='one')
+        assert root is None
+
+    def test_delete_with_left(self):
+        root = self.binary_tree.root
+        root = Node(data=3)
+        root.left = Node(data=2)
+        root.left.left = Node(data=1)
+
+        root = self.binary_tree.delete(node=root, data=2)
+        assert root.left.data == 1
+
+    def test_delete_with_right(self):
+        root = self.binary_tree.root
+        root = Node(data=3)
+        root.left = Node(data=1)
+        root.left.right = Node(data=2)
+
+        root = self.binary_tree.delete(node=root, data=1)
+        assert root.left.data == 2
+
+    def test_delete_with_both_children(self):
+        root = self.binary_tree.root
+        root = Node(data=4)
+        root.left = Node(data=2)
+        root.left.left = Node(data=1)
+        root.left.right = Node(data=3)
+
+        root = self.binary_tree.delete(node=root, data=2)
+        assert root.left.data == 3
+        assert root.left.left.data == 1
+
+    def test_delete_not_found(self):
+        with pytest.raises(ValueError):
+            self.binary_tree.delete(node=self.binary_tree.root, data=1)

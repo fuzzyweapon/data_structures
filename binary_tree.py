@@ -12,7 +12,7 @@ class BinaryTree(object):
 
     def lookup(self, node=None, data=None):
         if node is None:
-            raise ValueError("Data is not found.")
+            raise ValueError("The data was not found.")
 
         if data < node.data:
             return self.lookup(node=node.left, data=data)
@@ -49,3 +49,26 @@ class BinaryTree(object):
             return node
         else:
             return self.max(node=node.right)
+
+    def delete(self, node=None, data=None):
+        if node is None:
+            raise ValueError("The data was not found.")
+        
+        if data < node.data:
+            node.left = self.delete(node=node.left, data=data)
+        elif data > node.data:
+            node.right = self.delete(node=node.right, data=data)
+        else:
+            if node.left is None and node.right is None:
+                node = None
+            elif node.left and node.right is None:
+                node = node.left
+            elif node.right and node.left is None:
+                node = node.right
+            else:
+                node_to_delete = node
+                node = self.min(node=node.right)
+                node.right = self.delete(node=node_to_delete, data=node.data)
+                node.left = node_to_delete.left
+
+        return node
