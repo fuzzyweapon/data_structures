@@ -108,3 +108,15 @@ class BinaryTree(object):
             if ceiling:
                 node = ceiling
         return node
+
+    def rank(self, node=None, data=None):
+        if node is None:
+            raise ValueError("The data was not found.")
+
+        if data < node.data:
+            return self.rank(node=node.left, data=data)
+        elif data > node.data:
+            return self.size(node=node.left) + 1 + self.rank(node=node.right, data=data)
+        else:
+            left_rank = self.size(node=node.left)
+            return 1 + left_rank

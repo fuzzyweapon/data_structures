@@ -155,3 +155,23 @@ class TestBinaryTree:
     def test_ceiling_not_found(self):
         with pytest.raises(ValueError):
             self.binary_tree.ceiling(node=self.binary_tree.root, data='one')
+
+    def test_rank_root(self):
+        root = Node(data=4)
+        root.left = Node(data=1)
+        root.left.right = Node(data=3)
+
+        assert self.binary_tree.rank(node=root, data=4) == 3
+
+    def test_rank_right(self):
+        root = Node(data=4)
+        root.left = Node(data=1)
+        root.left.right = Node(data=3)
+        root.right = Node(data=6)
+        root.right.left = Node(data=5)
+        
+        assert self.binary_tree.rank(node=root, data=6) == 5
+
+    def test_rank_not_found(self):
+        with pytest.raises(ValueError):
+            self.binary_tree.rank(node=self.binary_tree.root, data=1)
